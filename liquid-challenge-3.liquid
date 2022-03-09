@@ -1,0 +1,29 @@
+{%- paginate collection.products by 10 -%}
+    {%- if paginate.pages > 1 -%}
+        {%- if paginate.parts.size > 0 -%}
+        <nav>
+            {%- if paginate.previous -%}
+                <a href="{{ paginate.previous.url }}">&lt;</a>
+            {%- endif -%}
+
+            {%- for part in paginate.parts -%}
+                <li>
+                {%- if part.is_link -%}
+                    <a href="{{ part.url }}">{{ part.title }}</a>
+                {%- else -%}
+                    {%- if part.title == paginate.current_page -%}
+                    <span>{{ part.title }}</span>
+                    {%- else -%}
+                    <span>{{ part.title }}</span>
+                    {%- endif -%}
+                {%- endif -%}
+                </li>
+            {%- endfor -%}
+
+            {%- if paginate.next -%}
+                <a href="{{ paginate.next.url }}">&gt;</a>
+            {%- endif -%}
+            </nav>
+        {%- endif -%}
+    {%- endif -%}
+{%- endpaginate -%}

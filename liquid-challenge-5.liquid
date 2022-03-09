@@ -1,0 +1,13 @@
+{% assign text = 'fruit:apple,vegetable:carrot,cloth:t-shirt,denim:jeans' %}
+
+{% assign array = text | split: ',' %}
+
+{% assign targetKey = 'fruit' %}
+{% assign targetVal = '' %}
+
+{% for item in array %}
+    {% assign key = item | split: ':' | first %}
+    {% if targetKey == key %}
+        {% assign targetVal = item | split: ':' | last %}
+    {% endif %}
+{% endfor %}
